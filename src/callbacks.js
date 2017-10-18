@@ -87,7 +87,7 @@ const contains = (foods, str, cb) => {
  let result = false;
 
  for (let i = 0; i < foods.length; i++) {
-  if (foods[each] === str) {
+  if (foods[i] === str) {
    result = true;
   }
  }
@@ -104,25 +104,26 @@ contains(foods, 'ribeye', (result) => {
 // code here
 
 const removeDuplicates = (foods, cb) => {
- let i = 1;
- for (let i = 0; i < foods.length; i++) {
+ let i = 0;
+ let j = 1; 
+ for (; i < foods.length; i++) {
   if (foods[i] !== '') {
-   for (let i = 0; i < foods.length; i++) {
-    if (foods[i] === foods[i]) {
+   for (; j < foods.length; j++) {
+     console.log(`${foods[i]} ${foods[j]}`);
+    if (foods[i] === foods[j] && i !== j) {
      foods[i] = '';
-     i = 1;
     }
    }
    i++;
+   j = 0;
   }
  }
  cb(foods);
 };
 
 removeDuplicates(foods, (uniqueFoods) => {
- console.log(`foods with duplicates removed: ${uniqueFoods}`);
+ console.log(`Foods with duplicates removed: ${uniqueFoods}`);
 });
-
 
 // Write a function called forEach that iterates over the provided array and passes the value and index into the callback.
 // code here
@@ -130,7 +131,7 @@ removeDuplicates(foods, (uniqueFoods) => {
 const forEach = (foods, cb) => {
 
  for (let i = 0; i < foods.length; i++) {
-  cb(foods[i], each);
+  cb(foods[i], i);
  }
 
 };
